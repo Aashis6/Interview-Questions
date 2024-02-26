@@ -1,4 +1,4 @@
-https://github.com/vikassachchan/Interview-Questions.giCreating a secure, scalable, auto-healing, highly available, auto-scalable, resilient, and cost-optimized infrastructure in AWS involves implementing a combination of AWS services and best practices. Below is a high-level overview of how to achieve these objectives:
+Creating a secure, scalable, auto-healing, highly available, auto-scalable, resilient, and cost-optimized infrastructure in AWS involves implementing a combination of AWS services and best practices. Below is a high-level overview of how to achieve these objectives:
 
 1. **Security:**
    - Use AWS Identity and Access Management (IAM) to manage user access and permissions.
