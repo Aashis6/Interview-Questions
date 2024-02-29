@@ -105,3 +105,39 @@ CMD echo "Starting Application" && npm install && npm start
 
 In summary, while both approaches are technically valid, using a single `CMD` instruction with multiple commands joined by `&&`
 is preferred for better control, efficiency, and maintainability of Dockerfiles.
+
+# Question 6
+
+Explain all the components of dockerfile.
+
+A Dockerfile consists of a series of instructions that define how to build a Docker image. Each instruction serves a specific purpose in the image-building process. Here's an explanation of the common components of a Dockerfile:
+
+1. **FROM**: Specifies the base image upon which the new image will be built. It is typically the first instruction in a Dockerfile.
+
+2. **MAINTAINER**: Optional. Specifies the name and email address of the image maintainer.
+
+3. **LABEL**: Optional. Adds metadata to the image in key-value pairs.
+
+4. **RUN**: Executes commands in the shell during the image build process. These commands are run in a new layer on top of the current image.
+
+5. **COPY**: Copies files and directories from the host machine to the image filesystem.
+
+6. **ADD**: Similar to COPY, but with additional features like unpacking compressed files and downloading files from URLs.
+
+7. **WORKDIR**: Sets the working directory for subsequent instructions in the Dockerfile.
+
+8. **ENV**: Sets environment variables in the container.
+
+9. **USER**: Sets the user or UID to use when running the container.
+
+10. **EXPOSE**: Informs Docker that the container listens on specific network ports at runtime.
+
+11. **CMD**: Specifies the default command to execute when the container starts. It can be overridden by providing arguments during container runtime.
+
+12. **ENTRYPOINT**: Specifies the command to run when the container starts. Unlike CMD, it cannot be overridden by providing arguments during container runtime.
+
+13. **VOLUME**: Creates a mount point with the specified name and marks it as externally mountable.
+
+14. **ARG**: Defines variables that users can pass at build-time to customize the build process.
+
+These components, used together in a Dockerfile, allow users to define the steps needed to build an image and encapsulate an application along with its dependencies.
