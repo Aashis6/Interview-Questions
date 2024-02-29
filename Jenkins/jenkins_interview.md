@@ -1,3 +1,7 @@
+# Question 1
+
+What is jenkins library? 
+
 In the context of Jenkins, a Jenkins library refers to a reusable collection of code, typically written in Groovy, that encapsulates common functionalities, utilities, or pipelines. These libraries are designed to promote code reuse, improve maintainability, and enable consistent practices across Jenkins pipelines.
 
 Key aspects of Jenkins libraries include:
