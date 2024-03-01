@@ -185,3 +185,112 @@ This command will apply changes only to the specified EC2 instance, leaving othe
 
 However, please note that using `-target` can have unintended consequences, especially in
 complex environments with interdependencies between resources. It's generally recommended to use it with caution and understand its implications on your infrastructure.
+
+# Question 7
+
+What are terraform provisioners?
+
+Terraform provisioners are a feature that allow you to run additional commands or scripts on local or remote resources after they have been created by Terraform. They are typically used for tasks such as installing software, configuring resources, or running tests after resource creation.
+
+There are several types of provisioners in Terraform:
+
+1. **local-exec**: This provisioner executes commands locally on the machine running Terraform. It is useful for tasks that need to be performed on the machine where Terraform is being executed, such as running shell scripts or executing other local commands.
+
+2. **remote-exec**: This provisioner connects to remote resources via SSH or WinRM and executes commands on them. It is commonly used for tasks like configuring newly created virtual machines or instances by running commands on them remotely.
+
+3. **file**: The file provisioner is used to copy files or directories from the machine running Terraform to remote resources created by Terraform. This can be useful for transferring configuration files, scripts, or other resources to provisioned instances.
+
+Provisioners are defined within a `provisioner` block inside a resource definition in a Terraform configuration file. Here's an example of how provisioners can be used:
+
+```hcl
+resource "aws_instance" "example" {
+  ami           = "ami-12345678"
+  instance_type = "t2.micro"
+
+  provisioner "local-exec" {
+    command = "echo Hello, World > hello.txt"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y nginx",
+      "sudo systemctl start nginx"
+    ]
+  }
+
+  provisioner "file" {
+    source      = "local/path/to/file"
+    destination = "/remote/path/to/file"
+  }
+}
+```
+
+In this example:
+
+- The `local-exec` provisioner writes "Hello, World" to a file named `hello.txt` on the local machine.
+- The `remote-exec` provisioner connects to the created AWS instance via SSH and installs Nginx.
+- The `file` provisioner copies a file from the local machine to the remote instance.
+
+It's important to use provisioners judiciously, as they can introduce dependencies and make Terraform configurations less idempotent. In general, it's recommended to use configuration management tools like Ansible or Chef for more complex provisioning tasks, and reserve Terraform provisioners for lightweight tasks or temporary workarounds.
+
+# Question 8
+
+How to store secrets in Terraform?
+
+In Terraform, secrets can be stored using various methods, each with its own advantages and considerations:
+
+1. **Sensitive Input Variables**: Terraform supports sensitive input variables, which are marked as sensitive in the Terraform configuration. These variables are not shown in the Terraform output, state file, or logs. They can be passed via command-line flags, environment variables, or input files.
+
+   Example:
+   ```hcl
+   variable "secret_password" {
+     type        = string
+     description = "Password for the application"
+     sensitive   = true
+   }
+   ```
+
+2. **Using Environment Variables**: Secrets can be passed to Terraform via environment variables. While this approach is simple, it may not be suitable for all use cases, especially when dealing with large numbers of secrets or sensitive information.
+
+   Example:
+   ```bash
+   export TF_VAR_secret_password="supersecret"
+   ```
+
+3. **External Secret Management Systems**: Organizations can use external secret management systems like HashiCorp Vault, AWS Secrets Manager, or Azure Key Vault to store and manage secrets. Terraform can integrate with these systems to fetch secrets during execution.
+
+   Example (HashiCorp Vault):
+   ```hcl
+   data "vault_generic_secret" "example" {
+     path = "secret/data/myapp"
+   }
+   ```
+
+4. **Encrypted State Files**: Terraform state files can be encrypted using tools like Terraform Cloud, Terraform Enterprise, or third-party encryption solutions. This adds an extra layer of security to sensitive data stored in the state.
+
+   Example (Terraform Cloud):
+   ```hcl
+   terraform {
+     backend "remote" {
+       organization = "myorg"
+       workspaces {
+         name = "example"
+       }
+     }
+   }
+   ```
+
+When storing secrets in Terraform, it's essential to follow security best practices, such as limiting access to sensitive data, rotating credentials regularly, and monitoring access to secrets. Additionally, consider the compliance requirements and regulations governing the handling of sensitive information in your organization.
+
+# Question 9
+
+How will you upgrade plugins on Terraform?
+
+Terraform init --upgrade
+
+# Question 10
+
+How will you control and handle rollbacks when something goes wrong?
+
+Maintain VCS for the previous working code. Pull it to machine and execute the ```terraform apply``` again
