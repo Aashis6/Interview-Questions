@@ -294,3 +294,54 @@ Terraform init --upgrade
 How will you control and handle rollbacks when something goes wrong?
 
 Maintain VCS for the previous working code. Pull it to machine and execute the ```terraform apply``` again
+
+# Question 11
+
+What does TF_LOG do?
+
+The `TF_LOG` environment variable in Terraform controls the verbosity of Terraform's logging output. It allows you to specify the logging level for Terraform operations, which can be helpful for troubleshooting and debugging Terraform configurations and executions.
+
+The `TF_LOG` variable accepts four different log levels:
+
+1. `TRACE`: Provides the most detailed logging, including detailed information about each operation Terraform performs. This level is useful for deep debugging but can generate a large amount of output.
+2. `DEBUG`: Provides debug-level logging, including information about Terraform's internal operations and decisions. It's helpful for troubleshooting complex issues.
+3. `INFO`: Provides informational logging, including summaries of Terraform operations and status updates. It's the default log level and provides a good balance between verbosity and readability.
+4. `WARN`: Provides warnings about potential issues or configuration problems. It's useful for highlighting warnings that might impact the execution of Terraform operations.
+5. `ERROR`: Provides only error messages, indicating critical issues that prevent Terraform from completing operations successfully. This level is useful for identifying and resolving errors quickly.
+
+You can set the `TF_LOG` environment variable to one of these levels to control the amount of logging output produced by Terraform. For example:
+
+```bash
+export TF_LOG=DEBUG
+```
+
+This command sets the logging level to `DEBUG`, causing Terraform to output debug-level messages during execution. Alternatively, you can set it inline with the Terraform command:
+
+```bash
+TF_LOG=DEBUG terraform apply
+```
+
+This command runs the `terraform apply` command with debug-level logging enabled for that specific execution.
+
+# Questuon 12
+Which command can be used to reconcile the Terraform state with the actual real-world infrastructure?
+
+```terraform refresh```
+
+# Question 13
+
+What is tainted resource in terraform?
+
+In Terraform, a "tainted" resource refers to a resource that Terraform knows to be in an inconsistent or unexpected state due to external factors. This could be because the resource was manually modified outside of Terraform, or because of some other reason that caused the resource to deviate from its expected configuration.
+
+When you mark a resource as tainted using the `terraform taint` command, Terraform will consider that resource as needing to be recreated during the next `terraform apply` operation. Terraform will destroy and recreate the tainted resource to bring it back into the desired state as defined in your configuration.
+
+Use cases for tainting a resource include:
+
+1. Correcting manual changes: If someone manually modifies a resource provisioned by Terraform (e.g., making changes directly in the AWS Management Console), you can mark the resource as tainted to ensure that Terraform brings it back into the desired state defined in your configuration.
+
+2. Handling drift detection: Tainting resources can be part of a strategy to detect and correct configuration drift between your infrastructure as defined in your Terraform configuration and the actual state of your resources in the cloud provider. This helps maintain consistency and reproducibility in your infrastructure.
+
+3. Reapplying specific resources: In some cases, you may want to apply changes only to certain resources without affecting others. Tainting specific resources allows you to target those resources for recreation during the next apply operation.
+
+Overall, tainting resources in Terraform provides a way to manage and correct deviations from the desired state of your infrastructure configuration.
