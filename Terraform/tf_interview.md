@@ -345,3 +345,51 @@ Use cases for tainting a resource include:
 3. Reapplying specific resources: In some cases, you may want to apply changes only to certain resources without affecting others. Tainting specific resources allows you to target those resources for recreation during the next apply operation.
 
 Overall, tainting resources in Terraform provides a way to manage and correct deviations from the desired state of your infrastructure configuration.
+
+# Question 14
+
+Difference between variable and local variable in terraform?
+
+In Terraform, both variables and locals are ways to define and use values within your configuration, but they serve different purposes:
+
+1. **Variables:**
+   - Variables are used to parameterize your Terraform configuration, allowing you to customize the behavior of your infrastructure.
+   - They are defined using the `variable` block in Terraform configuration files.
+   - Variables can be defined at various levels of granularity: globally, within modules, or within resources.
+   - They can have default values, descriptions, and type constraints.
+   - Variables are typically provided values by the user via input variables, which can be specified in various ways, such as through command-line flags, environment variables, or variable files.
+   - Example:
+     ```hcl
+     variable "instance_type" {
+       description = "The EC2 instance type"
+       type        = string
+       default     = "t2.micro"
+     }
+
+     resource "aws_instance" "example" {
+       instance_type = var.instance_type
+       # other configuration settings...
+     }
+     ```
+
+2. **Locals:**
+   - Locals are used to define values that are derived from other values within your configuration, allowing you to avoid repeating complex expressions.
+   - They are defined using the `locals` block in Terraform configuration files.
+   - Locals are evaluated once per Terraform run and are not exposed outside of the configuration where they are defined.
+   - They can be used to store intermediate results, construct complex values, or avoid repetition of expressions.
+   - Example:
+     ```hcl
+     locals {
+       subnet_ids = {
+         "us-west-1a" = "subnet-12345678"
+         "us-west-1b" = "subnet-87654321"
+       }
+     }
+
+     resource "aws_instance" "example" {
+       subnet_id = local.subnet_ids[var.availability_zone]
+       # other configuration settings...
+     }
+     ```
+
+In summary, variables are used for parameterization and customization of your infrastructure, while locals are used for intermediate computations and to avoid repetition of complex expressions. Both are important tools for managing and organizing your Terraform configurations effectively.
