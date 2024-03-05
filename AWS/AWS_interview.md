@@ -241,6 +241,7 @@ CloudFront is Amazon Web Services' (AWS) very own CDN service. It integrates sea
 **1.How Does CloudFront Work**
  
 Let's understand how CloudFront works with a simple example:
+
 Imagine you have a website with images stored on an Amazon S3 bucket (a cloud storage service). When a user requests an image, the request goes to CloudFront first.
 
 Here's how the process flows:
