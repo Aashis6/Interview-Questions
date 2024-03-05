@@ -238,7 +238,7 @@ A CDN is like a network of servers spread across various locations worldwide. Th
 
 CloudFront is Amazon Web Services' (AWS) very own CDN service. It integrates seamlessly with other AWS services and allows you to deliver content, videos, applications, and APIs securely with low-latency and high transfer speeds.
 
-1.**How Does CloudFront Work**
+**1.How Does CloudFront Work**
  
 Let's understand how CloudFront works with a simple example:
 Imagine you have a website with images stored on an Amazon S3 bucket (a cloud storage service). When a user requests an image, the request goes to CloudFront first.
@@ -252,18 +252,23 @@ Here's how the process flows:
             it sends the image to the user.The next time someone requests the same image, CloudFront will deliver it 
             from its cache, making it super fast and efficient!
 
-2.**Benefits of CloudFront**
+**2.Benefits of CloudFront**
+
    **Fast Content Delivery:** CloudFront ensures your content reaches users with minimal delay, making your website 
      lightning fast.
+     
    **Global Reach:** With servers in various locations worldwide, CloudFront brings your content closer to users, 
      regardless of where they are.
+     
    **Security:** CloudFront provides security features like DDoS protection and SSL/TLS encryption to keep your 
      content and users safe.
+     
    **Scalability:** CloudFront can handle traffic spikes effortlessly, ensuring a smooth experience for your users.
+   
    **Cost-Effective:** Pay only for the data transfer and requests made, making it cost-effective for businesses of 
      all sizes.
    
-3.**Use Cases and Scenarios**
+**3.Use Cases and Scenarios**
    
    **Scenario 1: E-Commerce Website**
      Let's say you have an e-commerce website that sells products globally. By using CloudFront, your product images 
