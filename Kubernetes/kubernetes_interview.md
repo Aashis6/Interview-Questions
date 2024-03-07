@@ -205,3 +205,62 @@ In this YAML:
     - For `Resource` type metrics, `resource` specifies the name of the resource (`cpu` or `memory`) and the target average utilization percentage.
 
 This YAML file can be applied to the Kubernetes cluster using the `kubectl apply -f filename.yaml` command to create the HorizontalPodAutoscaler resource.
+
+# Question 13
+
+What is RBAC and how to setup?
+
+Create a namespace.
+
+```kubectl create ns test ```
+
+Create a service account of name foo
+
+```
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: foo
+  namespace: test
+```
+
+```kubectl apply -f serviceaccount.yml```
+
+Create a role.
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: testadmin
+  namespace: test
+rules:
+- apiGroups: ["*"]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+```
+
+  ```Kubectl apply -f role.yml```
+
+  Do the role binding.
+  
+```
+  apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: testadminbinding
+  namespace: test
+subjects:
+- kind: ServiceAccount
+  name: foo
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: testadmin
+  apiGroup: ""
+```
+```kubectl apply -f rolebinding.yml```
+
+```auth can-i --as system:serviceaccount:test:foo list pods -n test```
+
+Ouput should be yes
+
