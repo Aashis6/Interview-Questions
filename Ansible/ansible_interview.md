@@ -198,3 +198,15 @@ In this example:
 - The second task will only execute if `some_condition_is_met` evaluates to false. If the condition is met, the task will be skipped.
 
 You can replace `some_condition_is_met` with any condition that evaluates to a boolean value (`true` or `false`).
+
+# Question 6
+
+How can we run command on few servers from inventory?
+
+We can achieve this using grouping in inventory.
+
+[dbservers]
+10.10.10.10
+
+[appserver]
+10.10.10.11
