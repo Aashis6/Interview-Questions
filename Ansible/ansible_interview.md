@@ -210,3 +210,36 @@ We can achieve this using grouping in inventory.
 
 [appserver]
 10.10.10.11
+
+
+# Question 7
+
+How to  change the Ansible inventory file location?
+
+To change the default location of the Ansible inventory file, you can specify the new location using the `ANSIBLE_INVENTORY` environment variable. Here's how you can do it:
+
+### Method 1: Using Environment Variable
+
+1. Open your terminal.
+
+2. Set the `ANSIBLE_INVENTORY` environment variable to the desired location of your inventory file. For example:
+   ```bash
+   export ANSIBLE_INVENTORY=/path/to/your/inventory/file
+   ```
+
+3. Now, when you run Ansible commands, Ansible will look for the inventory file at the location specified in the `ANSIBLE_INVENTORY` environment variable.
+
+### Method 2: Configuration File
+
+Alternatively, you can set the inventory location in your Ansible configuration file (`ansible.cfg`):
+
+1. Open your Ansible configuration file (`ansible.cfg`). If it doesn't exist, you can create one in your project directory or in `/etc/ansible`.
+
+2. Add the following line to specify the inventory location:
+   ```ini
+   inventory = /path/to/your/inventory/file
+   ```
+
+3. Save the configuration file.
+
+With either of these methods, Ansible will use the specified location for the inventory file instead of the default location (`/etc/ansible/hosts` or `./hosts` in the current directory).
