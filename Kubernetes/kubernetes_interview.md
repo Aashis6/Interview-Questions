@@ -317,3 +317,39 @@ roleRef:
 
 Ouput should be yes
 
+
+# Question 14
+
+Define components of kubernetes.
+
+Kubernetes is a powerful container orchestration platform that automates the deployment, scaling, and management of containerized applications. It comprises several key components that work together to provide a robust and scalable platform for running containerized workloads. Here are the core components of Kubernetes:
+
+1. **Master Components**:
+
+    - **kube-apiserver**: This component provides the Kubernetes API server, which is the front-end for the Kubernetes control plane. It serves the Kubernetes API, which allows users and other components to interact with the Kubernetes cluster.
+    
+    - **kube-controller-manager**: The controller manager runs various controllers that are responsible for managing the state of the cluster. These controllers include the Node Controller, Replication Controller, Endpoint Controller, and others. Each controller watches the state of the cluster through the API server and works to ensure that the desired state is achieved.
+    
+    - **kube-scheduler**: The scheduler is responsible for placing newly created pods onto nodes in the cluster. It takes into account factors such as resource requirements, node capacity, and user-specified constraints when making scheduling decisions.
+
+    - **etcd**: etcd is a distributed key-value store used by Kubernetes to store cluster state. It is a consistent and highly available data store that provides the authoritative source of truth for the cluster configuration and state.
+
+2. **Node Components**:
+
+    - **kubelet**: The kubelet is an agent that runs on each node in the cluster and is responsible for managing the containers running on that node. It communicates with the API server to receive instructions about which containers to run and to report the status of containers back to the control plane.
+    
+    - **kube-proxy**: The kube-proxy is responsible for network proxying and load balancing within the cluster. It maintains network rules on each node to route traffic to the appropriate pods based on their IP addresses and port numbers.
+    
+    - **Container Runtime**: The container runtime is the software responsible for running containers. Kubernetes supports various container runtimes, including Docker, containerd, and CRI-O. The container runtime is responsible for pulling container images, creating containers, and managing their lifecycle.
+
+3. **Add-Ons**:
+
+    - **DNS**: Kubernetes provides a DNS service that allows pods to discover and communicate with each other using DNS names. This enables services to be accessed by their names within the cluster without needing to know the IP addresses of individual pods.
+    
+    - **Dashboard**: The Kubernetes dashboard is a web-based UI that provides a graphical interface for managing and monitoring the cluster. It allows users to view information about the state of the cluster, create and manage resources, and troubleshoot issues.
+    
+    - **Ingress Controller**: An Ingress controller manages external access to services in the cluster. It typically provides features such as load balancing, SSL termination, and path-based routing to allow external clients to access services running in the cluster.
+    
+    - **Monitoring and Logging**: Various monitoring and logging solutions can be integrated with Kubernetes to collect metrics and logs from the cluster components and applications running within the cluster. Examples include Prometheus for monitoring and Elasticsearch/Fluentd/Kibana (EFK stack) or Loki/Promtail/Grafana (PLG stack) for logging.
+    
+These components work together to provide the functionality required to deploy, manage, and scale containerized applications in Kubernetes clusters. Each component plays a specific role in the overall architecture of Kubernetes and contributes to the platform's scalability, reliability, and flexibility.
