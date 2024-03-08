@@ -30,11 +30,47 @@ These are container which should run before running the actual container. For ex
 
 What is pod disruption budget?
 
+A Pod Disruption Budget (PDB) is a resource provided by Kubernetes to help ensure the high availability of applications running within a Kubernetes cluster during disruptive events such as node maintenance, software upgrades, or hardware failures.
+
+Here's an overview of how Pod Disruption Budgets work:
+
+**Definition**: A Pod Disruption Budget is a Kubernetes object that specifies the minimum number of pods of a certain type that must remain available during disruptions. It allows you to define constraints on how many pods of a particular application can be unavailable simultaneously.
+
+**Usage**: You can define a Pod Disruption Budget for a specific deployment, stateful set, or replica set using a Kubernetes manifest file. Within the PDB, you specify the maximum number or percentage of pods that can be unavailable at any given time.
+
+**Disruption budget enforcement**: Kubernetes uses the Pod Disruption Budget to control the eviction of pods during disruptive events. When a node needs to be drained for maintenance or other reasons, Kubernetes considers the PDB constraints before evicting pods from the node. It ensures that the desired number of pods specified in the PDB remain available.
+
+**Pod disruption budget types**: There are two types of Pod Disruption Budgets:
+
+Minimum availability: Specifies the minimum number of pods that must remain available.
+Maximum disruption: Specifies the maximum number or percentage of pods that can be unavailable.
+Examples of use cases: Pod Disruption Budgets are useful for ensuring that critical applications maintain a certain level of availability during node maintenance, rolling updates, or other cluster disruptions. They are commonly used in stateful applications where maintaining data consistency and availability is crucial.
+
+Overall, Pod Disruption Budgets help operators manage the availability of applications running in Kubernetes clusters by defining and enforcing availability constraints, thereby minimizing the impact of disruptive events on application availability and user experience.
+
+
+
 
 
 # Question 5
 
 What is voluntarily and involuntarily disruption?
+
+In the context of Kubernetes and Pod Disruption Budgets (PDBs), the terms "voluntary" and "involuntary" disruptions refer to different types of events or actions that can affect the availability of pods within a cluster:
+
+1. **Voluntary Disruptions**:
+   - These are planned disruptions initiated by the cluster administrator or operator.
+   - Examples include node maintenance, software upgrades, scaling down resources, or draining a node for maintenance or decommissioning.
+   - Voluntary disruptions are typically performed with advance notice and coordination to minimize the impact on applications and users.
+   - Kubernetes allows administrators to control how pods are evicted during voluntary disruptions using Pod Disruption Budgets (PDBs).
+
+2. **Involuntary Disruptions**:
+   - These are unplanned disruptions that occur due to unforeseen events such as hardware failures, network issues, or sudden crashes.
+   - Involuntary disruptions can result in the loss of pod availability without advance warning.
+   - Kubernetes attempts to handle involuntary disruptions gracefully by rescheduling affected pods onto healthy nodes in the cluster.
+   - Pod Disruption Budgets (PDBs) can also help mitigate the impact of involuntary disruptions by enforcing availability constraints and preventing too many pods from being evicted simultaneously.
+
+In summary, voluntary disruptions are planned and initiated by administrators for maintenance or scaling purposes, while involuntary disruptions are unplanned events that can impact pod availability. Kubernetes provides mechanisms such as Pod Disruption Budgets to manage and mitigate the impact of both types of disruptions on application availability and cluster stability.
 
 
 
@@ -43,10 +79,27 @@ What is voluntarily and involuntarily disruption?
 What is custom controller?
 
 
+A custom controller in Kubernetes is a specialized control loop that extends the functionality of the Kubernetes API server to manage custom resources or perform custom operations beyond what is provided by the built-in controllers.
+
+Custom controllers can be used for various purposes, such as managing complex applications, implementing advanced scheduling policies, enforcing custom security policies, or integrating with external systems. Examples include the Horizontal Pod Autoscaler (HPA) controller for autoscaling applications based on CPU utilization, the Custom Resource Definition (CRD) controller for managing custom resources, and controllers for managing stateful applications or performing application-specific operations.
+
+Overall, custom controllers provide a powerful mechanism for extending Kubernetes to meet diverse requirements and enable users to build and manage complex, custom workflows within their Kubernetes clusters.
+
+
 
 # Question 7
 
 What is a side car container?
+
+A sidecar container is a design pattern in Kubernetes where an additional container is deployed alongside a primary application container within the same pod. The sidecar container works in conjunction with the main application container, providing supporting functionalities such as logging, monitoring, or proxying.
+
+Example use cases for sidecar containers include:
+
+**Logging**: A sidecar container may be responsible for collecting logs generated by the main application container and forwarding them to a centralized logging system.
+**Monitoring**: A sidecar container could monitor the resource usage and performance metrics of the main application container, reporting them to a monitoring system.
+**Security**: Sidecar containers can handle tasks such as encryption/decryption, authentication, or traffic filtering to enhance the security posture of the application.
+
+Overall, sidecar containers provide a flexible and scalable approach to extending the capabilities of Kubernetes pods, enabling the deployment of modular and composable application architectures.
 
 
 # Question 8
