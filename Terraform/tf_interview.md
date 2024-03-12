@@ -393,3 +393,43 @@ In Terraform, both variables and locals are ways to define and use values within
      ```
 
 In summary, variables are used for parameterization and customization of your infrastructure, while locals are used for intermediate computations and to avoid repetition of complex expressions. Both are important tools for managing and organizing your Terraform configurations effectively.
+
+# Question 15
+
+What is null response in terraform?
+
+In Terraform, a null response refers to a special value that represents the absence of a valid value. It is commonly used in Terraform configurations to handle situations where a resource or data object may not exist or may not have a value.
+
+A null response can occur in various scenarios:
+
+1. **Data Not Found**: When querying for data using Terraform data sources, the data source may return null if the requested data does not exist.
+
+2. **Conditional Values**: In Terraform configurations, you may use conditional expressions to evaluate certain conditions and return null if the condition is not met.
+
+3. **Resource Outputs**: If a Terraform resource does not have any outputs or if the outputs are not explicitly defined, accessing those outputs may result in a null value.
+
+4. **Terraform Functions**: Certain Terraform functions may return null in specific scenarios. For example, the `lookup` function returns null if the specified key does not exist in the map.
+
+Handling null responses in Terraform typically involves using conditional expressions or built-in functions to check for null values and handle them appropriately. For example, you can use the `coalesce` function to return the first non-null value from a list of expressions, or you can use the `if` function to conditionally evaluate expressions based on whether a value is null or not.
+
+Here's an example of using the `if` function to handle a null response:
+
+```hcl
+variable "my_data" {
+  type = map
+  default = {
+    key1 = "value1"
+    key2 = "value2"
+  }
+}
+
+output "example_output" {
+  value = if contains(var.my_data, "key3") {
+    var.my_data["key3"]
+  } else {
+    null
+  }
+}
+```
+
+In this example, the `example_output` will be assigned the value of `var.my_data["key3"]` if the key exists in the map `var.my_data`, otherwise it will be assigned null. This helps to handle situations where the requested key may not exist in the map.
