@@ -141,3 +141,119 @@ A Dockerfile consists of a series of instructions that define how to build a Doc
 14. **ARG**: Defines variables that users can pass at build-time to customize the build process.
 
 These components, used together in a Dockerfile, allow users to define the steps needed to build an image and encapsulate an application along with its dependencies.
+
+# Question 7
+
+How can you pass environment variables to a Docker container?
+
+You can pass environment variables to a Docker container in several ways:
+
+1. **Using the `-e` or `--env` option**:
+   You can use the `-e` or `--env` option when running a container to set one or more environment variables. You can specify the variable name and value directly on the command line.
+
+   ```bash
+   docker run -e VARIABLE_NAME=value image_name
+   ```
+
+   For example:
+   ```bash
+   docker run -e MYSQL_ROOT_PASSWORD=my-secret-password mysql
+   ```
+
+2. **Using a file with environment variables**:
+   You can create a file containing environment variables in key-value pairs and pass it to the container using the `--env-file` option.
+
+   ```bash
+   docker run --env-file=path/to/env-file image_name
+   ```
+
+   For example, if you have a file named `env.list` containing:
+   ```
+   VARIABLE_NAME=value
+   ```
+
+   You can run the container using:
+   ```bash
+   docker run --env-file=env.list image_name
+   ```
+
+3. **Setting environment variables in Dockerfile**:
+   You can set environment variables directly in the Dockerfile using the `ENV` instruction. This will set the environment variables in the container when it starts.
+
+   ```Dockerfile
+   FROM image_name
+   ENV VARIABLE_NAME=value
+   ```
+
+   For example:
+   ```Dockerfile
+   FROM nginx
+   ENV MY_VAR hello
+   ```
+
+4. **Using Docker Compose**:
+   If you're using Docker Compose to manage your containers, you can specify environment variables in the `docker-compose.yml` file under the `environment` section.
+
+   ```yaml
+   services:
+     my_service:
+       image: image_name
+       environment:
+         VARIABLE_NAME: value
+   ```
+
+   For example:
+   ```yaml
+   services:
+     my_service:
+       image: nginx
+       environment:
+         MY_VAR: hello
+   ```
+
+These are some common methods for passing environment variables to Docker containers. Choose the method that best suits your use case and workflow.
+
+# Question 8
+
+How to remove unused resources in docker?
+
+To clean up unused Docker resources, including stopped containers, dangling images, unused networks, and unused volumes, you can use various Docker CLI commands. Here are the commands you can use:
+
+1. **Remove Stopped Containers**:
+   Use the `docker container prune` command to remove all stopped containers.
+
+   ```bash
+   docker container prune
+   ```
+
+2. **Remove Dangling Images**:
+   Dangling images are images that have no associated containers. You can remove them using the `docker image prune` command.
+
+   ```bash
+   docker image prune
+   ```
+
+3. **Remove Unused Volumes**:
+   Use the `docker volume prune` command to remove unused volumes.
+
+   ```bash
+   docker volume prune
+   ```
+
+4. **Remove Unused Networks**:
+   Unused networks are networks that are not connected to any container. You can remove them using the `docker network prune` command.
+
+   ```bash
+   docker network prune
+   ```
+
+5. **Remove All Unused Resources**:
+   To remove all unused resources at once, you can use the `docker system prune` command with the `-a` or `--all` option.
+
+   ```bash
+   docker system prune -a
+   ```
+
+   This command removes all stopped containers, dangling images, unused networks, and unused volumes.
+
+Before running these commands, it's important to review the resources that will be deleted to ensure that you don't accidentally remove any important data. Additionally, be aware that these commands permanently delete the specified resources, and the operation cannot be undone.
