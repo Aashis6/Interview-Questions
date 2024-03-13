@@ -284,4 +284,28 @@ Here's how the process flows:
      providing a better user experience.
    
 
+# Question 9
 
+What is VPC endpoints?
+
+A Virtual Private Cloud (VPC) endpoint is a service that enables you to privately connect your VPC to supported AWS services and VPC endpoint services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection. 
+
+There are two types of VPC endpoints:
+
+1. **Gateway Endpoints**: 
+   - A gateway endpoint enables private connectivity to AWS services such as Amazon S3 and DynamoDB from within your VPC. 
+   - It allows you to access these services using their public endpoints over a private connection without needing to go through the internet.
+
+2. **Interface Endpoints**:
+   - An interface endpoint (also known as an AWS PrivateLink endpoint) provides private connectivity to AWS services powered by AWS PrivateLink. 
+   - It creates an Elastic Network Interface (ENI) in your VPC, which serves as a private endpoint for the service. 
+   - Interface endpoints are used to connect to AWS services, AWS Marketplace partner services, and services hosted by other AWS accounts in a secure and scalable manner.
+
+VPC endpoints help improve security, reduce latency, and simplify network architecture by enabling private communication between resources within your VPC and AWS services. They eliminate the need for public IP addresses and internet gateways, making communication more secure and reducing exposure to potential security threats. Additionally, VPC endpoints can help optimize network traffic and reduce data transfer costs by keeping traffic within the AWS network.
+
+
+# Question 10
+
+How will you protect your system?
+
+AWS WAF and shield. NACL,SG
