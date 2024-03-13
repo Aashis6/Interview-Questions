@@ -309,3 +309,51 @@ VPC endpoints help improve security, reduce latency, and simplify network archit
 How will you protect your system?
 
 AWS WAF and shield. NACL,SG
+
+ # Question 11
+
+ What are the components of IAM policies in JSON?
+
+ IAM policies in JSON format consist of several components:
+
+1. **Version**: Specifies the version of the policy language being used. The current version is "2012-10-17".
+
+2. **Statement**: Contains one or more individual statements that define the permissions for the policy. Each statement includes the following elements:
+   - **Effect**: Specifies whether the statement allows or denies access. It can be "Allow" or "Deny".
+   - **Action**: Specifies the list of actions that the policy allows or denies. Actions represent AWS API operations.
+   - **Resource**: Specifies the AWS resources to which the actions apply. It can be a specific resource ARN or an Amazon Resource Name (ARN) pattern.
+   - **Condition** (optional): Specifies conditions under which the policy statement is in effect. Conditions can be based on various factors such as IP address, time, or the presence of specific tags.
+
+Here's an example of an IAM policy in JSON format:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::example-bucket/*",
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": "192.0.2.0/24"
+        }
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Action": "s3:*",
+      "Resource": "*",
+      "Condition": {
+        "NotIpAddress": {
+          "aws:SourceIp": "192.0.2.0/24"
+        }
+      }
+    }
+  ]
+}
+```
+
+In this example:
+- The policy allows the "s3:GetObject" action on objects in the "example-bucket" S3 bucket for requests originating from the IP address range "192.0.2.0/24".
+- The policy denies all S3 actions on all resources for requests not originating from the IP address range "192.0.2.0/24".
