@@ -386,3 +386,24 @@ AWS offers a wide range of services and features to help users enhance the secur
 10. **AWS CloudTrail**: CloudTrail is a logging service that records API calls and activity in your AWS account. CloudTrail provides a trail of events that you can use for security analysis, compliance auditing, and troubleshooting.
 
 These are just a few examples of the many security services and features available in AWS. By leveraging these services, you can build a secure and compliant cloud environment and protect your data, applications, and infrastructure from security threats and vulnerabilities.
+
+
+# Question 11
+
+What is the difference between RPO and RTO?
+
+RTO (Recovery Time Objective) and RPO (Recovery Point Objective) are two key metrics used in disaster recovery and business continuity planning. They help organizations define their goals for recovering from a disruption or disaster.
+
+1. **Recovery Time Objective (RTO)**:
+   - RTO is the maximum acceptable downtime that an organization can tolerate for a particular system, application, or service.
+   - It represents the time it takes to restore the system to full functionality after a disruption or disaster occurs.
+   - RTO is typically measured in hours, minutes, or seconds and is defined based on business requirements, operational needs, and the criticality of the system or service.
+   - Achieving a lower RTO often requires investing in redundant systems, failover mechanisms, and automated recovery processes to minimize downtime.
+
+2. **Recovery Point Objective (RPO)**:
+   - RPO is the maximum acceptable amount of data loss that an organization can tolerate for a particular system, application, or service.
+   - It represents the point in time to which data must be recovered after a disruption or disaster occurs.
+   - RPO is typically measured in time units (e.g., minutes, hours) and is defined based on business requirements, data retention policies, and the criticality of the data.
+   - Achieving a lower RPO often requires implementing frequent data backups, replication, and synchronization mechanisms to minimize data loss in the event of a disaster.
+
+In summary, RTO and RPO are critical metrics used to define the recovery objectives and capabilities of an organization's disaster recovery and business continuity plans. By understanding and defining these objectives, organizations can better prioritize their resources, investments, and strategies to ensure timely recovery and minimal data loss in the event of a disruption or disaster.
