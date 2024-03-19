@@ -357,3 +357,32 @@ Here's an example of an IAM policy in JSON format:
 In this example:
 - The policy allows the "s3:GetObject" action on objects in the "example-bucket" S3 bucket for requests originating from the IP address range "192.0.2.0/24".
 - The policy denies all S3 actions on all resources for requests not originating from the IP address range "192.0.2.0/24".
+
+
+# Question 10
+
+What are the services available in AWS for a security perspective?
+
+AWS offers a wide range of services and features to help users enhance the security of their cloud environments. Here are some key AWS services from a security perspective:
+
+1. **Identity and Access Management (IAM)**: IAM allows you to manage user identities and access permissions for AWS resources. You can create IAM users, groups, roles, and policies to control who can access which resources and what actions they can perform.
+
+2. **AWS Key Management Service (KMS)**: KMS is a managed service that enables you to create and control encryption keys used to encrypt your data. You can use KMS to encrypt data at rest and data in transit, as well as to manage keys centrally and audit key usage.
+
+3. **AWS Certificate Manager (ACM)**: ACM makes it easy to provision, manage, and deploy SSL/TLS certificates for use with AWS services and your own applications. ACM provides free SSL/TLS certificates and automates certificate renewal and deployment.
+
+4. **Amazon GuardDuty**: GuardDuty is a threat detection service that continuously monitors your AWS environment for malicious activity and unauthorized behavior. GuardDuty analyzes logs and network traffic to detect security threats such as compromised instances, unauthorized access, and malicious activity.
+
+5. **AWS WAF (Web Application Firewall)**: WAF is a firewall service that protects your web applications from common web exploits and attacks. WAF allows you to create custom rules to block or allow traffic based on IP addresses, user agents, HTTP headers, and other criteria.
+
+6. **AWS Firewall Manager**: Firewall Manager is a centralized management service that allows you to configure and apply firewall rules across multiple AWS accounts and resources. You can use Firewall Manager to enforce security policies and compliance standards across your organization.
+
+7. **Amazon Inspector**: Inspector is an automated security assessment service that helps you identify security vulnerabilities and compliance issues in your AWS resources. Inspector analyzes the configuration of your resources and provides recommendations for remediation.
+
+8. **AWS Config**: Config is a configuration management service that allows you to monitor and assess the configuration of your AWS resources. Config continuously tracks changes to resource configurations and provides a detailed view of resource relationships and dependencies.
+
+9. **Amazon Macie**: Macie is a data security and privacy service that uses machine learning to automatically discover, classify, and protect sensitive data stored in AWS. Macie helps you identify and remediate data exposure risks and compliance violations.
+
+10. **AWS CloudTrail**: CloudTrail is a logging service that records API calls and activity in your AWS account. CloudTrail provides a trail of events that you can use for security analysis, compliance auditing, and troubleshooting.
+
+These are just a few examples of the many security services and features available in AWS. By leveraging these services, you can build a secure and compliant cloud environment and protect your data, applications, and infrastructure from security threats and vulnerabilities.
