@@ -433,3 +433,17 @@ output "example_output" {
 ```
 
 In this example, the `example_output` will be assigned the value of `var.my_data["key3"]` if the key exists in the map `var.my_data`, otherwise it will be assigned null. This helps to handle situations where the requested key may not exist in the map.
+
+# Question 16
+
+What is terraform private module registry?
+
+1. **Self-hosted Git Repository**: Set up a private Git repository (e.g., using GitLab, Bitbucket, or GitHub Enterprise) to store your Terraform modules. You can then use the Git URLs of your modules in your Terraform configurations.
+
+2. **Terraform Registry with Private Module Registry**: Use the Terraform Registry to host your private modules. Terraform Cloud offers a private module registry feature that allows you to publish and manage private modules within your organization. This feature is available with Terraform Cloud's paid plans.
+
+3. **Artifact Repository**: Store your Terraform modules as artifacts in a package manager or artifact repository such as Artifactory or Nexus Repository Manager. You can use these repositories to manage the distribution and versioning of your modules.
+
+4. **Custom Module Server**: Implement a custom module server using tools like Nexus Repository Manager, HashiCorp's Nomad, or even a simple web server. You can host your modules on this server and use custom logic for authentication and access control.
+
+Regardless of the approach you choose, it's important to ensure that your private module registry is secure and accessible only to authorized users within your organization. You may need to implement authentication, access control, and encryption mechanisms to protect sensitive infrastructure code and configurations stored in your private registry. Additionally, consider using Terraform's support for module sources and version constraints to manage dependencies and ensure consistency across your infrastructure codebase.
