@@ -407,3 +407,38 @@ RTO (Recovery Time Objective) and RPO (Recovery Point Objective) are two key met
    - Achieving a lower RPO often requires implementing frequent data backups, replication, and synchronization mechanisms to minimize data loss in the event of a disaster.
 
 In summary, RTO and RPO are critical metrics used to define the recovery objectives and capabilities of an organization's disaster recovery and business continuity plans. By understanding and defining these objectives, organizations can better prioritize their resources, investments, and strategies to ensure timely recovery and minimal data loss in the event of a disruption or disaster.
+
+# Question 12
+
+AWS Shiedld vs AWS GuardDuty vs AWS WAF vs AWS Inspector
+
+AWS Shield, WAF (Web Application Firewall), GuardDuty, and Inspector are all AWS services focused on security, but they serve different purposes and provide different features. Here's a comparison of each:
+
+1. **AWS Shield**:
+   - **Purpose**: AWS Shield is a managed Distributed Denial of Service (DDoS) protection service that safeguards web applications running on AWS from large-scale DDoS attacks.
+   - **Features**:
+     - AWS Shield Standard: Automatically protects all AWS customers at no additional cost, providing protection against common DDoS attacks.
+     - AWS Shield Advanced: Provides enhanced DDoS protection with features like always-on monitoring, attack mitigation, and access to DDoS response team (DRT) for more complex and sophisticated attacks.
+
+2. **AWS WAF (Web Application Firewall)**:
+   - **Purpose**: AWS WAF is a web application firewall that helps protect web applications from common web exploits and attacks.
+   - **Features**:
+     - Allows you to define custom rules to filter and monitor HTTP and HTTPS traffic to your web applications.
+     - Provides protection against common web attacks such as SQL injection, cross-site scripting (XSS), and HTTP flood attacks.
+     - Integrates with other AWS services such as CloudFront, Application Load Balancer (ALB), and API Gateway for centralized protection.
+
+3. **Amazon GuardDuty**:
+   - **Purpose**: Amazon GuardDuty is a threat detection service that continuously monitors your AWS environment for malicious activity and unauthorized behavior.
+   - **Features**:
+     - Analyzes data sources such as VPC Flow Logs, CloudTrail logs, and DNS logs to identify threats like unusual API calls, unauthorized access attempts, and compromised instances.
+     - Uses machine learning algorithms and threat intelligence to detect anomalies and suspicious activity.
+     - Provides detailed findings and actionable insights to help you remediate security issues and improve your overall security posture.
+
+4. **Amazon Inspector**:
+   - **Purpose**: Amazon Inspector is an automated security assessment service that helps you identify security vulnerabilities and compliance issues in your AWS resources.
+   - **Features**:
+     - Automatically assesses the security and compliance of EC2 instances, containers, and applications running on AWS.
+     - Provides detailed findings and recommendations for remediation based on best practices and industry standards.
+     - Helps you prioritize and address security issues to improve the security posture of your AWS environment.
+
+In summary, AWS Shield is focused on protecting against DDoS attacks, AWS WAF provides protection against web application attacks, Amazon GuardDuty detects threats and suspicious activity in your AWS environment, and Amazon Inspector helps you identify security vulnerabilities and compliance issues in your AWS resources. These services can be used together to provide layered security and comprehensive protection for your applications and infrastructure in AWS.
