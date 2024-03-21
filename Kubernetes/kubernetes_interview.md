@@ -353,3 +353,63 @@ Kubernetes is a powerful container orchestration platform that automates the dep
     - **Monitoring and Logging**: Various monitoring and logging solutions can be integrated with Kubernetes to collect metrics and logs from the cluster components and applications running within the cluster. Examples include Prometheus for monitoring and Elasticsearch/Fluentd/Kibana (EFK stack) or Loki/Promtail/Grafana (PLG stack) for logging.
     
 These components work together to provide the functionality required to deploy, manage, and scale containerized applications in Kubernetes clusters. Each component plays a specific role in the overall architecture of Kubernetes and contributes to the platform's scalability, reliability, and flexibility.
+
+# Question 15
+
+What is NetworkPolicy ?
+
+By Creating a NetworkPolicy object , we specified which pod can access the service/pod based on there labels.
+This can be useful in a production env. where security is a concern and access to certain service/pod need to
+be restricted. NetworkPolicy in K8s to limit access to a services/pods.
+
+Lets understand with one example , we have a frontend ,backend & database pod and we have created respective services fro each pod. All the pod and services are having there IP add. In K8s all the pods and services are in same network so by default any pod/service will conect easly to any pod/service using there IP address and name. It means any pod will connect to our database pod easly and this is a security concern and our database pod does not have any security because any pod will connect to database pod.
+
+NP is applied on pod and we can control there traffic with the help of NP. Only one NP wiil apply on one Pod.
+
+Yaml File:-
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      role: db-pod
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: internal-db
+      namespaceSelector:
+        matchLabels:
+          name: dev
+    ports:
+    - protocol: TCP
+      port: 8080
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+        except:
+        - 172.17.1.0/24
+    ports:
+    - protocol: TCP
+      port: 30000
+      endPort: 32768
+
+
+
+
+
+
+
+
+
+
+
+
+
