@@ -469,9 +469,8 @@ How to Create a NAT Gateway in AWS VPC?
 
 1. **Create the NAT Gateway**
 
-   a. Go to the VPC dashboard in the AWS Management Console.
-   
-   b. In the navigation pane, choose “NAT Gateways.”
+   - Go to the VPC dashboard in the AWS Management Console.
+   - In the navigation pane, choose “NAT Gateways.”
    
    c. Click “Create NAT Gateway.”
    
