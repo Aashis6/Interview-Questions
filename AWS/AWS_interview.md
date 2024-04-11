@@ -471,29 +471,25 @@ How to Create a NAT Gateway in AWS VPC?
 
    - Go to the VPC dashboard in the AWS Management Console.
    - In the navigation pane, choose “NAT Gateways.”
-   
-   c. Click “Create NAT Gateway.”
-   
-   d. Select the public subnet where you want to deploy the NAT Gateway. This subnet should have a route out to the 
+   - Click “Create NAT Gateway.”
+   - Select the public subnet where you want to deploy the NAT Gateway. This subnet should have a route out to the 
       internet via an Internet Gateway.
-   
-   e. Specify the Elastic IP (EIP) allocation ID. If you're allocating a new EIP here, AWS will prompt you to do so.
-   
-   f. Click “Create NAT Gateway.”
+   - Specify the Elastic IP (EIP) allocation ID. If you're allocating a new EIP here, AWS will prompt you to do so.
+   - Click “Create NAT Gateway.”
 
 3. **Update Route Tables for Private Subnets**
 
    After creating the NAT Gateway, you need to update the route table associated with your private subnet(s) to route 
    internet-bound traffic to the NAT Gateway.
 
-   a. Go back to the VPC dashboard.
-   b. In the navigation pane, select “Route Tables.”
-   c. Identify the route table associated with your private subnet. You can find this association under the “Subnet 
+   - Go back to the VPC dashboard.
+   - In the navigation pane, select “Route Tables.”
+   - Identify the route table associated with your private subnet. You can find this association under the “Subnet 
        Associations” tab when you select a specific route table.
-   d. Select the route table and click the “Routes” tab, then click “Edit routes.”
-   e. Click “Add route.” In the destination field, enter 0.0.0.0/0 (which represents all internet traffic), and for 
+   - Select the route table and click the “Routes” tab, then click “Edit routes.”
+   - Click “Add route.” In the destination field, enter 0.0.0.0/0 (which represents all internet traffic), and for 
       the target, select the NAT Gateway you just created.
-   f. Click “Save routes.”
+   - Click “Save routes.”
 
 
 
