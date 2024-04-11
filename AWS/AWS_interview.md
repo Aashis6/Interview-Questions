@@ -462,3 +462,37 @@ The use of S3 versioning provides several benefits:
 5. **Data Replication and Distribution**: Versioning facilitates data replication and distribution across multiple locations or accounts. By maintaining multiple versions of objects, you can synchronize data between different environments or share specific versions with collaborators while keeping the entire history intact.
 
 It's important to note that enabling versioning for an S3 bucket may incur additional storage costs, as each version of an object is stored separately. However, the benefits of data protection, recovery, and auditability often outweigh the associated costs, especially for critical or sensitive data stored in S3 buckets.
+
+# Question 14
+
+How to Create a NAT Gateway in AWS VPC?
+
+1. **Create the NAT Gateway**
+
+   a. Go to the VPC dashboard in the AWS Management Console.
+   b. In the navigation pane, choose “NAT Gateways.”
+   c. Click “Create NAT Gateway.”
+   d. Select the public subnet where you want to deploy the NAT Gateway. This subnet should have a route out to the 
+      internet via an Internet Gateway.
+   e. Specify the Elastic IP (EIP) allocation ID. If you're allocating a new EIP here, AWS will prompt you to do so.
+   f. Click “Create NAT Gateway.”
+
+2. **Update Route Tables for Private Subnets**
+
+   After creating the NAT Gateway, you need to update the route table associated with your private subnet(s) to route 
+   internet-bound traffic to the NAT Gateway.
+
+   a. Go back to the VPC dashboard.
+   b. In the navigation pane, select “Route Tables.”
+   c. Identify the route table associated with your private subnet. You can find this association under the “Subnet 
+       Associations” tab when you select a specific route table.
+   d. Select the route table and click the “Routes” tab, then click “Edit routes.”
+   e. Click “Add route.” In the destination field, enter 0.0.0.0/0 (which represents all internet traffic), and for 
+      the target, select the NAT Gateway you just created.
+   f. Click “Save routes.”
+
+
+
+
+
+   
