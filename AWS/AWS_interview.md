@@ -462,3 +462,61 @@ The use of S3 versioning provides several benefits:
 5. **Data Replication and Distribution**: Versioning facilitates data replication and distribution across multiple locations or accounts. By maintaining multiple versions of objects, you can synchronize data between different environments or share specific versions with collaborators while keeping the entire history intact.
 
 It's important to note that enabling versioning for an S3 bucket may incur additional storage costs, as each version of an object is stored separately. However, the benefits of data protection, recovery, and auditability often outweigh the associated costs, especially for critical or sensitive data stored in S3 buckets.
+
+# Question 14
+
+How to Create a NAT Gateway in AWS VPC?
+
+1. **Create the NAT Gateway**
+
+   - Go to the VPC dashboard in the AWS Management Console.
+   - In the navigation pane, choose “NAT Gateways.”
+   - Click “Create NAT Gateway.”
+   - Select the public subnet where you want to deploy the NAT Gateway. This subnet should have a route out to the 
+      internet via an Internet Gateway.
+   - Specify the Elastic IP (EIP) allocation ID. If you're allocating a new EIP here, AWS will prompt you to do so.
+   - Click “Create NAT Gateway.”
+
+3. **Update Route Tables for Private Subnets**
+
+   After creating the NAT Gateway, you need to update the route table associated with your private subnet(s) to route 
+   internet-bound traffic to the NAT Gateway.
+
+   - Go back to the VPC dashboard.
+   - In the navigation pane, select “Route Tables.”
+   - Identify the route table associated with your private subnet. You can find this association under the “Subnet 
+       Associations” tab when you select a specific route table.
+   - Select the route table and click the “Routes” tab, then click “Edit routes.”
+   - Click “Add route.” In the destination field, enter 0.0.0.0/0 (which represents all internet traffic), and for 
+      the target, select the NAT Gateway you just created.
+   - Click “Save routes.”
+  
+# Question 15
+
+How to create the private subnet in AWS VPC?
+
+Creating a private subnet in an AWS VPC (Virtual Private Cloud) is an important step in architecting secure and scalable cloud-based applications. A private subnet in AWS is a segment of a VPC's IP address range where instances are not directly accessible from the internet. These instances can access the internet through a NAT Gateway or a NAT instance in a public subnet for outbound traffic, ensuring a layer of security.
+
+ **Create the Subnet**
+   - In the VPC Dashboard, click on “Subnets” in the left navigation pane.
+   - Click the “Create subnet” button.
+   - You will be prompted to fill in details for your subnet:
+     
+         - **Name tag:** Enter a meaningful name for your subnet, such as PrivateSubnet1.
+         - **VPC:** Select the VPC where you want to create your private subnet.
+         - **Availability Zone:** Choose an availability zone. For higher availability, create multiple subnets in 
+                               different zones.
+         - **IPv4 CIDR block:** Enter the IPv4 CIDR block for your subnet. This should be a subset of your VPC’s CIDR 
+                              block and should not overlap with other subnets.
+
+**Modify Route Table**
+  - For your subnet to be considered private, it should not have a route to the internet. However, you might want it 
+    to be able to initiate outbound connections to the internet using a NAT Gateway (which resides in a public subnet).
+
+       - Navigate to "Route Tables" in the VPC Dashboard.
+       - Either create a new route table for your private subnet or use an existing one that doesn’t have a route to 
+            the internet.
+       - Associate this route table with your private subnet:
+         
+              - Select the route table, click on the “Actions” button, and choose “Edit subnet associations.”
+              - Select your private subnet and save the association.
