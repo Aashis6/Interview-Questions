@@ -513,4 +513,9 @@ Creating a private subnet in an AWS VPC (Virtual Private Cloud) is an important 
   - For your subnet to be considered private, it should not have a route to the internet. However, you might want it 
     to be able to initiate outbound connections to the internet using a NAT Gateway (which resides in a public subnet).
 
-   
+       - Navigate to "Route Tables" in the VPC Dashboard.
+       - Either create a new route table for your private subnet or use an existing one that doesn’t have a route to 
+            the internet.
+       - Associate this route table with your private subnet:
+              - Select the route table, click on the “Actions” button, and choose “Edit subnet associations.”
+              - Select your private subnet and save the association.
