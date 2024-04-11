@@ -470,14 +470,19 @@ How to Create a NAT Gateway in AWS VPC?
 1. **Create the NAT Gateway**
 
    a. Go to the VPC dashboard in the AWS Management Console.
+   
    b. In the navigation pane, choose “NAT Gateways.”
+   
    c. Click “Create NAT Gateway.”
+   
    d. Select the public subnet where you want to deploy the NAT Gateway. This subnet should have a route out to the 
       internet via an Internet Gateway.
+   
    e. Specify the Elastic IP (EIP) allocation ID. If you're allocating a new EIP here, AWS will prompt you to do so.
+   
    f. Click “Create NAT Gateway.”
 
-2. **Update Route Tables for Private Subnets**
+3. **Update Route Tables for Private Subnets**
 
    After creating the NAT Gateway, you need to update the route table associated with your private subnet(s) to route 
    internet-bound traffic to the NAT Gateway.
