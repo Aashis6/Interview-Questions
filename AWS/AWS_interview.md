@@ -520,3 +520,29 @@ Creating a private subnet in an AWS VPC (Virtual Private Cloud) is an important 
          
               - Select the route table, click on the “Actions” button, and choose “Edit subnet associations.”
               - Select your private subnet and save the association.
+
+
+
+# Question 16
+
+What are the steps for VPC peering?
+
+Setting up VPC peering in AWS involves several steps:
+
+1. **Identify VPCs**: Determine which VPCs you want to peer. Each VPC can be located in the same AWS account or different AWS accounts.
+
+2. **Enable DNS Resolution and DNS Hostnames**: Ensure that DNS resolution and DNS hostnames are enabled for both the requester and accepter VPCs. This allows instances in the peered VPCs to resolve each other's DNS names.
+
+3. **Create a VPC Peering Connection**: In the AWS Management Console, navigate to the VPC dashboard and choose "Peering Connections." Click "Create Peering Connection" and specify the details, including the requester VPC, accepter VPC, and any optional configuration settings.
+
+4. **Accept the Peering Connection**: If the VPC peering connection is between VPCs in different AWS accounts, the owner of the accepter VPC must accept the peering request. This is done through the VPC dashboard or using the AWS CLI.
+
+5. **Update Route Tables**: Update the route tables of the VPCs to include routes for the CIDR blocks of the peered VPCs. In each VPC, add a route to the CIDR block of the other VPC pointing to the VPC peering connection.
+
+6. **Test Connectivity**: Verify that instances in the peered VPCs can communicate with each other using private IP addresses. You can do this by launching instances in each VPC and testing connectivity using tools like ping or telnet.
+
+7. **(Optional) Configure Security Groups and Network ACLs**: Adjust security group and network ACL settings as needed to allow the desired traffic flow between the peered VPCs while maintaining security.
+
+8. **Monitor and Maintain**: Regularly monitor the VPC peering connections and associated resources to ensure they are functioning as expected. Update configurations and settings as necessary to meet changing requirements.
+
+By following these steps, you can establish VPC peering connections between VPCs in AWS to enable private communication and resource sharing across different networks.
