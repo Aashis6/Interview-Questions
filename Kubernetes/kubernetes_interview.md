@@ -403,13 +403,62 @@ spec:
 
 
 
+# Question 16
 
+What is ephimeral pods?
 
+Ephemeral pods in Kubernetes refer to temporary or short-lived pods that are created to perform specific tasks or processes and are not intended to persist beyond their immediate need. These pods are typically used for batch processing, data analysis, or other short-term workloads where there is no need for long-term persistence. Once the task or job is completed, the ephemeral pods are terminated automatically by Kubernetes. They are contrasted with long-running pods, which are intended to remain active for an extended duration to serve ongoing application or service needs.
 
+# Question 17
 
+How access can be given to users to control plane?
 
+In Kubernetes, access to the control plane (API server) is typically managed through authentication and authorization mechanisms. Here's how you can provide access to users:
 
+1. **Authentication**: Users can be authenticated using various methods such as:
+   - Client certificates: Users present a certificate signed by a trusted CA.
+   - Static tokens: Users present a static token associated with their identity.
+   - Username/password: Users provide a username and password.
+   - OpenID Connect (OIDC): Users authenticate via an OIDC provider like Google or Azure AD.
 
+2. **Authorization**: Once authenticated, users are authorized to perform actions based on their roles and permissions. This is typically managed through Role-Based Access Control (RBAC) in Kubernetes:
+   - Define roles: Define roles that specify what actions users can perform within a namespace.
+   - Assign roles to users: Associate roles with users or groups using RoleBindings or ClusterRoleBindings.
+   - Review permissions: Regularly review and update permissions to ensure users have appropriate access levels.
+
+3. **RBAC Example**:
+   Here's an example of creating a Role and RoleBinding in Kubernetes:
+   ```yaml
+   # Define a role
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: Role
+   metadata:
+     namespace: my-namespace
+     name: pod-reader
+   rules:
+   - apiGroups: [""]
+     resources: ["pods"]
+     verbs: ["get", "watch", "list"]
+
+   # Assign the role to a user
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: RoleBinding
+   metadata:
+     name: read-pods
+     namespace: my-namespace
+   subjects:
+   - kind: User
+     name: my-user
+     apiGroup: rbac.authorization.k8s.io
+   roleRef:
+     kind: Role
+     name: pod-reader
+     apiGroup: rbac.authorization.k8s.io
+   ```
+
+4. **Secure Communication**: Ensure that communication with the API server is encrypted using TLS.
+
+By following these steps, you can effectively manage access to the Kubernetes control plane for users or groups according to your organization's security requirements.
 
 
 
