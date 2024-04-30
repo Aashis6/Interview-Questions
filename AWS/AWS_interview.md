@@ -546,3 +546,52 @@ Setting up VPC peering in AWS involves several steps:
 8. **Monitor and Maintain**: Regularly monitor the VPC peering connections and associated resources to ensure they are functioning as expected. Update configurations and settings as necessary to meet changing requirements.
 
 By following these steps, you can establish VPC peering connections between VPCs in AWS to enable private communication and resource sharing across different networks.
+
+# Question 17
+
+What are placement groups in AWS?
+
+Placement groups in AWS are logical groupings of instances within the same Availability Zone (AZ) that enable applications to meet specific requirements for latency, network traffic, or hardware affinity. There are three types of placement groups:
+
+1. **Cluster Placement Group**: A cluster placement group is suitable for applications that need low-latency and high network throughput. Instances within a cluster placement group are placed in close physical proximity to each other, which minimizes the network latency between them. However, all the instances in a cluster placement group must be within the same AZ.
+
+2. **Spread Placement Group**: A spread placement group ensures that each instance is placed on distinct underlying hardware, reducing the risk of simultaneous failure due to hardware or network issues. Spread placement groups are suitable for applications that require high availability and redundancy within a single AZ.
+
+3. **Partition Placement Group (Partitioned Cluster)**: A partition placement group divides instances into logical partitions, each running on its own set of underlying hardware. This type of placement group is suitable for large distributed and replicated workloads, such as big data analytics or distributed databases, where instances need to be distributed across multiple AZs for fault tolerance.
+
+When launching instances, you can specify the placement group using the AWS Management Console, AWS CLI, or AWS SDKs. It's important to note that placement groups have certain limitations, such as restrictions on instance types and the inability to move instances between placement groups. Therefore, it's essential to understand the requirements of your application and choose the appropriate placement group type accordingly.
+
+# Question 18
+
+What is concurrency in AWS lambda?
+
+Concurrency in AWS Lambda refers to the number of function executions that can occur simultaneously. Lambda automatically scales the concurrency based on the incoming request rate, up to the concurrency limit set for the function. 
+
+Concurrency is controlled by two factors:
+
+1. **Account-Level Concurrency Limit**: This is the maximum number of concurrent executions allowed for all functions in an AWS account. By default, this limit is 1000 concurrent executions per region, but it can be increased by contacting AWS Support.
+
+2. **Function-Level Concurrency Limit**: This is the maximum number of concurrent executions allowed for a specific Lambda function. By default, this limit is set to the account-level concurrency limit, but it can be modified individually for each function. 
+
+When a function is invoked, Lambda checks the current concurrency against the function-level limit. If the concurrency is below the limit, the function is invoked immediately. If the concurrency is at or above the limit, Lambda will queue incoming requests until capacity becomes available.
+
+Managing concurrency is crucial for ensuring optimal performance and cost-effectiveness of Lambda functions. By adjusting the concurrency limits based on the workload requirements, you can control how many function invocations can occur simultaneously, preventing resource exhaustion and managing costs effectively.
+
+# Difference between ALB and NLB?
+
+ALB (Application Load Balancer) and NLB (Network Load Balancer) are both load balancing services offered by AWS, but they serve different purposes and have different characteristics:
+
+1. **ALB (Application Load Balancer)**:
+   - Operates at the application layer (Layer 7) of the OSI model.
+   - Routes traffic based on content of the request, such as URL or HTTP headers.
+   - Supports features like content-based routing, host-based routing, path-based routing, and integration with AWS services like AWS WAF and AWS Lambda.
+   - Ideal for applications with HTTP and HTTPS traffic, web applications, microservices, and container-based applications.
+
+2. **NLB (Network Load Balancer)**:
+   - Operates at the transport layer (Layer 4) of the OSI model.
+   - Routes traffic based on IP protocol data (e.g., IP address, port numbers).
+   - Provides ultra-high performance and low-latency load balancing, suitable for TCP and UDP traffic.
+   - Supports static IP addresses and preservation of the client's IP address in the request to the targets.
+   - Suitable for applications that require extreme performance, such as high-volume websites, gaming applications, and IoT applications.
+
+In summary, ALB is designed for applications that require advanced routing capabilities and support for HTTP and HTTPS traffic, while NLB is optimized for high-performance, low-latency scenarios with TCP and UDP traffic. The choice between ALB and NLB depends on the specific requirements and characteristics of the application being load balanced.
