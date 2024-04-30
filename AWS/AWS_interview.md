@@ -577,7 +577,9 @@ When a function is invoked, Lambda checks the current concurrency against the fu
 
 Managing concurrency is crucial for ensuring optimal performance and cost-effectiveness of Lambda functions. By adjusting the concurrency limits based on the workload requirements, you can control how many function invocations can occur simultaneously, preventing resource exhaustion and managing costs effectively.
 
-# Difference between ALB and NLB?
+# Question 19
+
+Difference between ALB and NLB?
 
 ALB (Application Load Balancer) and NLB (Network Load Balancer) are both load balancing services offered by AWS, but they serve different purposes and have different characteristics:
 
@@ -595,3 +597,29 @@ ALB (Application Load Balancer) and NLB (Network Load Balancer) are both load ba
    - Suitable for applications that require extreme performance, such as high-volume websites, gaming applications, and IoT applications.
 
 In summary, ALB is designed for applications that require advanced routing capabilities and support for HTTP and HTTPS traffic, while NLB is optimized for high-performance, low-latency scenarios with TCP and UDP traffic. The choice between ALB and NLB depends on the specific requirements and characteristics of the application being load balanced.
+
+# Question 20
+
+How to check the expiry of certificates in ACM?
+
+To check the validity of certificates in AWS Certificate Manager (ACM), you can use the AWS Management Console or the AWS Command Line Interface (CLI). Here's how you can do it using both methods:
+
+### Using the AWS Management Console:
+1. **Navigate to ACM**: Go to the AWS Management Console and search for "Certificate Manager" or find it under the "Security, Identity & Compliance" section.
+2. **View Certificates**: In the ACM dashboard, you'll see a list of your certificates. Click on the certificate you want to check the validity for.
+3. **View Certificate Details**: In the certificate details page, you'll find information about the certificate, including its status and expiration date.
+4. **Check Expiration Date**: Look for the "Valid from" and "Valid to" dates to determine the validity period of the certificate.
+
+### Using the AWS CLI:
+1. **List Certificates**: Run the following command to list all certificates in ACM:
+   ```
+   aws acm list-certificates
+   ```
+2. **Describe Certificate**: Identify the ARN (Amazon Resource Name) of the certificate you want to check, then run the following command to describe the certificate details:
+   ```
+   aws acm describe-certificate --certificate-arn <certificate-arn>
+   ```
+   Replace `<certificate-arn>` with the ARN of your certificate.
+3. **Check Expiration Date**: In the output, look for the "NotBefore" and "NotAfter" fields to determine the validity period of the certificate.
+
+By following these steps, you can easily check the validity and expiration date of certificates managed by AWS Certificate Manager.
