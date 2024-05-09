@@ -638,11 +638,11 @@ Accessing an EC2 instance that resides in a private subnet within a Virtual Priv
 
 - For the bastion host: Configure its security group to allow inbound SSH (or RDP) traffic from your IP address (or a specific range if needed) so that you can connect to it.
 
-  3. **Connect to the Bastion Host**: Use SSH (or RDP for Windows instances) to connect to the bastion host from your local machine. The command would look something like this for SSH:
+3. **Connect to the Bastion Host**: Use SSH (or RDP for Windows instances) to connect to the bastion host from your local machine. The command would look something like this for SSH:
  
      ssh -i <path_to_private_key> ec2-user@<bastion_public_ip>
 
-  4. **Connect to the EC2 Instance in the Private Subnet**: Once you're connected to the bastion host, you can SSH (or RDP) into the EC2 instance in the private subnet. Use the private IP address of the instance for this. The command would look like:
+4. **Connect to the EC2 Instance in the Private Subnet**: Once you're connected to the bastion host, you can SSH (or RDP) into the EC2 instance in the private subnet. Use the private IP address of the instance for this. The command would look like:
  
    ssh -i <path_to_private_key> ec2-user@<private_instance_private_ip>
 
