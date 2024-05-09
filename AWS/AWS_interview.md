@@ -623,3 +623,33 @@ To check the validity of certificates in AWS Certificate Manager (ACM), you can 
 3. **Check Expiration Date**: In the output, look for the "NotBefore" and "NotAfter" fields to determine the validity period of the certificate.
 
 By following these steps, you can easily check the validity and expiration date of certificates managed by AWS Certificate Manager.
+
+# Question 21
+
+How to access a EC2 instance which is resides in private subnet in a VPC?
+
+Accessing an EC2 instance that resides in a private subnet within a Virtual Private Cloud (VPC) can be done using various methods. Here's a common approach using a bastion host:
+
+1. **Bastion Host Setup**: Create a bastion host (also known as a jump box or a bastion server) in a public subnet within the same VPC. This bastion host acts as an intermediary server that allows you to securely connect to instances in the private subnet.
+
+2. **Security Group Configuration**: 
+
+- For the EC2 instance in the private subnet: Configure its security group to allow inbound SSH (or RDP for Windows instances) traffic only from the IP address of the bastion host. This ensures that only the bastion host can access the instance.
+
+- For the bastion host: Configure its security group to allow inbound SSH (or RDP) traffic from your IP address (or a specific range if needed) so that you can connect to it.
+
+3. **Connect to the Bastion Host**: Use SSH (or RDP for Windows instances) to connect to the bastion host from your local machine. The command would look something like this for SSH:
+ 
+     ssh -i <path_to_private_key> ec2-user@<bastion_public_ip>
+
+4. **Connect to the EC2 Instance in the Private Subnet**: Once you're connected to the bastion host, you can SSH (or RDP) into the EC2 instance in the private subnet. Use the private IP address of the instance for this. The command would look like:
+ 
+   ssh -i <path_to_private_key> ec2-user@<private_instance_private_ip>
+
+   By following these steps, you can securely access an EC2 instance in a private subnet within a VPC using a bastion host. Remember to configure security groups and route tables properly to ensure secure and efficient communication within your VPC.
+
+
+
+
+
+
